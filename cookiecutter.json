@@ -1,0 +1,9 @@
+{
+    "project_name": "my_project",
+    "package_name": "my_package",
+    "description": "A sample project",
+    "author_name": "You Name",
+    "author_email": "your.email@example.com",
+    "python_version": "3.9",
+    "poetry_version": "1.7.0"
+}
