@@ -3,20 +3,29 @@
 PYTHON_VERSION := {{ cookiecutter.python_version }}
 POETRY_VERSION := {{ cookiecutter.poetry_version }}
 VENV_DIR = .venv
+FILE_NAME_SH = run.sh
 
 setup: ## Create a virtual environment and install Poetry
-	$(PYTHON_VERSION) -m venv $(VENV_DIR)
-	$(VENV_DIR)/bin/pip install --upgrade pip
-	$(VENV_DIR)/bin/pip install poetry==$(POETRY_VERSION)
-	$(VENV_DIR)/bin/poetry env use $(PYTHON_VERSION)
+	python$(PYTHON_VERSION) -m venv $(VENV_DIR) && \
+	$(VENV_DIR)/bin/pip install --upgrade pip && \
+	$(VENV_DIR)/bin/pip install poetry==$(POETRY_VERSION) && \
 	$(VENV_DIR)/bin/poetry install
+	@if [ -f ./$(FILE_NAME_SH) ]; then \
+		rm -f $(FILE_NAME_SH); \
+	fi; \
+	touch $(FILE_NAME_SH); \
+	chmod 777 $(FILE_NAME_SH); \
+	printf "source $(VENV_DIR)/bin/activate" > $(FILE_NAME_SH); \
+	echo ""; \
+	echo "to activate virtual environemnt"; \
+	echo "		source run.sh"
 
 validate-versions: ## Validate Python and Poetry versions
 	@echo "Python version: $(PYTHON_VERSION)"
 	@echo "Poetry version: $(POETRY_VERSION)"
 
 cleanup: ## Remove virtual environment and other build artifacts
-	rm -rf $(VENV_DIR) .mypy_cache .pytest_cache *.egg-info build dist
+	@rm -rf $(VENV_DIR) dist $(FILE_NAME_SH)
 
 lint:  ## Run Ruff linter on the codebase
 	$(VENV_DIR)/bin/poetry run ruff .

@@ -7,9 +7,13 @@ readme = "README.md"
 packages = [{include = "src"}]
 
 [tool.poetry.dependencies]
-"python_version": ">=3.9,<3.12"
+python = "{{ cookiecutter.python_version }}"
+pytest = "^7.0.0"
+black = "23.7.0"
+ruff = "0.0.292"
 
 [tool.poetry.dev-dependencies]
+python = "{{ cookiecutter.python_version }}"
 pytest = "^7.0.0"
 black = "23.7.0"
 ruff = "0.0.292"
@@ -21,24 +25,16 @@ build-backend = "poetry.core.masonry.api"
 [tool.black]
 line-length = 88
 skip-string-normalization = true
-exclude = '''
-/(
-    \.git
-    | \.venv
-    | build
-    | dist
-    | migrations
-)/
-'''
+exclude = "/(\\.git|\\.venv|build|dist|migrations)/"
 
 [tool.ruff]
 line-length = 88
 select = ["E", "F", "W", "C", "I"]
 ignore = ["E501"]
 exclude = ["build", "dist", ".venv", ".mypy_cache"]
-per-file-ignores = {
-    "__init__.py" = ["F401"]
-}
+
+[tool.ruff.per-file-ignores]
+"__init__.py" = ["F401"]
 
 [tool.ruff.flake8-quotes]
 quotes = "double"
