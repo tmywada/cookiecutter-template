@@ -6,7 +6,7 @@ VENV_DIR = .venv
 FILE_NAME_SH = run.sh
 
 setup: ## Create a virtual environment and install Poetry
-	python$(PYTHON_VERSION) -m venv $(VENV_DIR) && \
+	python -m venv $(VENV_DIR) && \
 	$(VENV_DIR)/bin/pip install --upgrade pip && \
 	$(VENV_DIR)/bin/pip install poetry==$(POETRY_VERSION) && \
 	$(VENV_DIR)/bin/poetry install
