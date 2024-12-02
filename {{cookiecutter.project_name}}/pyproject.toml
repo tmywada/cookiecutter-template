@@ -1,19 +1,15 @@
 [tool.poetry]
-name = "{{ cookiecutter.project_name }}"
+name = "{{ cookiecutter.package_name }}"
 version = "0.1.0"
 description = "{{ cookiecutter.description }}"
 authors = ["{{ cookiecutter.author_name }} <{{ cookiecutter.author_email }}>"]
 readme = "README.md"
-packages = [{include = "src"}]
+packages = [{include = "{{ cookiecutter.package_name }}", from = "src"}]
 
 [tool.poetry.dependencies]
 python = "{{ cookiecutter.python_version }}"
-pytest = "^7.0.0"
-black = "23.7.0"
-ruff = "0.0.292"
 
 [tool.poetry.dev-dependencies]
-python = "{{ cookiecutter.python_version }}"
 pytest = "^7.0.0"
 black = "23.7.0"
 ruff = "0.0.292"
