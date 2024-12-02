@@ -38,6 +38,3 @@ coverage.xml
 # System-specific files
 Thumbs.db
 .DS_Store
-
-# custom shell scripts
-*.sh
