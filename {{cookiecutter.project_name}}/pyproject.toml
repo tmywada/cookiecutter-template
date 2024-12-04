@@ -25,17 +25,15 @@ exclude = "/(\\.git|\\.venv|build|dist|migrations)/"
 
 [tool.ruff]
 line-length = 88
-select = ["E", "F", "W", "C", "I"]
+select = ["E", "F", "W", "C", "I", "Q000]
 ignore = ["E501"]
 exclude = ["build", "dist", ".venv", ".mypy_cache"]
 
 [tool.ruff.per-file-ignores]
 "__init__.py" = ["F401"]
 
-[tool.ruff.flake8-quotes]
-quotes = "double"
 
 [tool.ruff.isort]
-combine_as_imports = true
-force_sort_within_sections = true
-known_first_party = ["{{ cookiecutter.package_name }}"]
+combine-as-imports = true
+force-sort-within-sections = true
+known-first-party = ["{{ cookiecutter.package_name }}"]
