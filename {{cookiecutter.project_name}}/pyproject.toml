@@ -25,7 +25,7 @@ exclude = "/(\\.git|\\.venv|build|dist|migrations)/"
 
 [tool.ruff]
 line-length = 88
-select = ["E", "F", "W", "C", "I", "Q000]
+select = ["E", "F", "W", "C", "I", "Q000"]
 ignore = ["E501"]
 exclude = ["build", "dist", ".venv", ".mypy_cache"]
 
